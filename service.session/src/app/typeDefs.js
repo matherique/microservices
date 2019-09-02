@@ -1,19 +1,18 @@
 import { gql } from 'apollo-server-express';
 
 export default gql`
-  type Query {
-    hello: String
+  type Service {
+    name: String!
+    talkTo: [String!]
   }
 
-  input Request {
-    me: String
-    target: String!
-    token: String!
+  type Query {
+    me: Service
   }
 
   type Mutation {
-    generateToken(serviceName: String!): String!
-    validate(me: String, target: String!, token: String!): Boolean!
+    generateToken(me: String!, target: String): String!
+    validate(me: String!, target: String!, token: String!): Boolean!
   }
 `;
 

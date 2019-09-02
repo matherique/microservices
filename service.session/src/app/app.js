@@ -1,7 +1,5 @@
 import express from 'express';
 
-// console.log(AuthController);
-
 class AppController {
   constructor() {
     this.express = express();
