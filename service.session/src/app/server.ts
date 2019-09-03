@@ -1,4 +1,3 @@
-import 'dotenv/config';
 import { ApolloServer } from 'apollo-server-express';
 
 import app from './app';
