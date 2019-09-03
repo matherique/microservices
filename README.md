@@ -1,7 +1,7 @@
-# Aprendendo microsserviços
+# Aprendendo Microservices
 
-A ideia é criar um projeto simples para aplicar a arquitetura de microsserviços,
-pelo menos aquela que eu acho que é microsserviços pelo o que tenho lido.
+A ideia é criar um projeto simples para aplicar a arquitetura de microservices,
+pelo menos aquela que eu acho que é microservices pelo o que tenho lido.
 
 ## A aplicação
 

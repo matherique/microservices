@@ -1,6 +1,8 @@
-import express from 'express';
+import * as express from 'express';
 
 class AppController {
+  express: express.Application;
+
   constructor() {
     this.express = express();
     this.middlewares();
