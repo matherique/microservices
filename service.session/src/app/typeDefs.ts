@@ -10,8 +10,12 @@ export default gql`
     me: Service
   }
 
+  type Token {
+    token: String
+  }
+
   type Mutation {
-    generateToken(me: String!, target: String): String!
+    generateToken(me: String!, target: String): Token
     validate(me: String!, target: String!, token: String!): Boolean!
   }
 `;

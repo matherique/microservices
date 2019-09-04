@@ -5,7 +5,7 @@ import { IdentityDTO } from '../DTO';
 import { getInfo } from '../auth';
 
 const services = {
-  user: [],
+  user: ['product'],
   product: ['stock', 'category'],
   stock: ['product', 'category'],
   category: []
@@ -27,11 +27,17 @@ class IdentityController {
     if (isValid.target === target) return true;
     return false;
   }
-  async generateToken({ me, target }: IdentityDTO) {
-    const envKey = `SERVICE_${me}`;
 
-    // se target foi informado mas ele nao tem permissão, retorna null
-    if (target && !services[me.replace('service.', '')]) return null;
+  async generateToken({ me, target }: IdentityDTO) {
+    const envKey = `SERVICE_${me.toUpperCase()}`;
+    // se passar um me que nao existe
+    if (services[me] === undefined) return { token: null };
+
+    // se passar um target que nao existe
+    if (target && services[target] === undefined) return { token: null };
+
+    // se passar um target que nao esta na lista de permitidos
+    if (target && services[me].indexOf(target) < 0) return { token: null };
 
     const secret = !target ? process.env.SECRET : process.env[envKey]!;
     const tokenData = !target ? { me } : { me, target };
@@ -41,7 +47,7 @@ class IdentityController {
       algorithm: 'HS256'
     });
 
-    return token;
+    return { token };
   }
 }
 
